@@ -13,6 +13,13 @@ interface Directors extends Teacher {
 interface printTeacherFunction {
   (firstName: string, lastName: string): string;
 }
+interface StudentClassInterface {
+  workOnHomework(): string;
+  displayName(): string;
+}
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
 
 const teacher3: Teacher = {
   firstName: "John",
@@ -32,6 +39,17 @@ const director1: Directors = {
   numberOfReports: 17,
 };
 console.log(director1);
+class StudentClass implements StudentClassInterface {
+  constructor(private firstName: string, private lastName: string) {}
+
+  workOnHomework(): string {
+    return "Currently working";
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
 
 const printTeacher: printTeacherFunction = (firstName, lastName) => {
   return `${firstName.charAt(0)}. ${lastName}`;
